@@ -15,41 +15,9 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 export default function Header() {
   const container = useRef<HTMLDivElement>(null);
   const textContainer = useRef<HTMLDivElement>(null);
-  const MarqueeRef = useRef<HTMLDivElement>(null);
-  const TextRef = useRef<HTMLParagraphElement>(null);
 
   useGSAP(
     () => {
-      gsap.to(textContainer.current, {
-        y: -50,
-        scrollTrigger: {
-          trigger: textContainer.current,
-          start: "top-=200px top",
-          end: "bottom top",
-          scrub: 1,
-        },
-      });
-
-      const MARGIN_VALUE = 200;
-
-      gsap.to(MarqueeRef.current, {
-        marginRight: MARGIN_VALUE,
-        scrollTrigger: {
-          trigger: MarqueeRef.current,
-          start: "top-=300px top",
-          end: "bottom top",
-          scrub: 1,
-        },
-      });
-      gsap.to(TextRef.current, {
-        marginLeft: MARGIN_VALUE,
-        scrollTrigger: {
-          trigger: TextRef.current,
-          start: "top-=300px top",
-          end: "bottom top",
-          scrub: 1,
-        },
-      });
       gsap.set(".anim-item", { opacity: 0, y: 50 });
       gsap.fromTo(
         ".anim-item",
@@ -74,7 +42,7 @@ export default function Header() {
     <>
       <MouseParallax className="w-full h-full" strength={10}>
         <div
-          className=" h-screen flex justify-center items-center relative overflow-x-hidden"
+          className=" h-screen flex justify-center items-center relative overflow-hidden"
           ref={container}
         >
           <div
@@ -83,10 +51,10 @@ export default function Header() {
           >
             <div className="flex items-end gap-x-4 whitespace-nowrap">
               <p
+                id="header-text-1"
                 data-parallax-item
                 data-strength="0.8"
                 className="anim-item"
-                ref={TextRef}
               >
                 حل چالش ها،{" "}
               </p>{" "}
@@ -94,7 +62,7 @@ export default function Header() {
                 className="py-2 sm:py-4 md:py-6 lg:py-8 bg-content1/90 rounded-4xl md:rounded-[55px] w-40 sm:w-56 md:w-100 lg:w-140 overflow-hidden anim-item"
                 data-parallax-item
                 data-strength="1.5"
-                ref={MarqueeRef}
+                id="header-marquee"
               >
                 <Marquee dir="rtl" gap={24}>
                   <div className="flex items-center gap-x-8 font-regular">
@@ -116,31 +84,15 @@ export default function Header() {
                 </Marquee>
               </div>
             </div>
-            <div data-parallax-item data-strength="0.6" className="anim-item">
+            <div
+              data-parallax-item
+              data-strength="0.6"
+              className="anim-item"
+              id="header-text-2"
+            >
               <p>با کد تمیز و رابط کاربری مدرن</p>
             </div>
           </div>
-
-          {/* <ImageBlur
-            src="/Header.jpg"
-            classname="absolute bottom-15 left-10 anim-item"
-          /> */}
-          <a
-            onClick={(e) => {
-              e.preventDefault();
-              gsap.to(window, {
-                duration: 1,
-                scrollTo: "#content",
-                ease: "power2.inOut",
-              });
-            }}
-            className="flex gap-x-2 items-center text-sm absolute bottom-15 right-30 anim-item"
-            data-parallax-item
-            data-strength="0.4"
-          >
-            <p>اسکرول کن رفیق</p>
-            <CornerLeftDown size={16} />
-          </a>
         </div>
       </MouseParallax>
     </>

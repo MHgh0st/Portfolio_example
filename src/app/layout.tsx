@@ -4,7 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import localFont from "next/font/local";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
-
+import Navigation from "@/components/Navigation";
 import "./globals.css";
 
 const YekanBakhFont = localFont({
@@ -70,11 +70,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl" className={`${KalamehFont.className}`}>
-      <body className="bg-[##faf7f6] dark:bg-[#161616] transition-colors">
+      <body className="bg-[##faf7f6] dark:bg-[#161616] transition-colors overflow-x-hidden">
         <CustomCursor />
         <Providers>
           <Navbar />
           <SmoothScroll>{children}</SmoothScroll>
+          <Navigation />
         </Providers>
       </body>
     </html>
