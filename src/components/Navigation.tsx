@@ -84,7 +84,7 @@ export default function Navigation() {
   return (
     <div
       ref={main}
-      className="backdrop-blur-md bg-primary/20 border border-white/30 rounded-3xl p-4 shadow-lg fixed right-10 bottom-10 z-[999] flex flex-col gap-y-2"
+      className="backdrop-blur-md bg-primary/20 border border-white/30 rounded-3xl p-4 shadow-lg fixed right-8 bottom-8 z-[999] flex flex-col gap-y-2"
     >
       {tabs.map((tab) => (
         <div key={tab.name} className="flex items-center gap-x-2">

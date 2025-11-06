@@ -24,6 +24,9 @@ export default function Home() {
         transformOrigin: "50% 50%",
         // xPercent: 300,
       });
+      gsap.set("#header-text-2", {
+        opacity: 1,
+      });
 
       const tl = gsap.timeline({
         defaults: { duration: 1 },
@@ -52,7 +55,11 @@ export default function Home() {
           { xPercent: -200, ease: "power2.in" },
           "headerOut"
         )
-        .to("#header-text-2", { yPercent: 400, ease: "power2.in" }, "headerOut")
+        .to(
+          "#header-text-2",
+          { yPercent: 400, opacity: 0, ease: "power2.in" },
+          "headerOut"
+        )
         .addLabel("contentIn")
         // گزینه جایگزین: .from("#content", {..., immediateRender:false}, "contentIn")
         .to("#AboutMeImage", { xPercent: 0, ease: "power2.out" }, "out+=0")
@@ -77,7 +84,7 @@ export default function Home() {
         <AboutMe />
       </div>
 
-      {/* <section className="min-h-[100vh]"></section> */}
+      <section className="min-h-[300vh]"></section>
     </div>
   );
 }
