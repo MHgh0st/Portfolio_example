@@ -15,6 +15,8 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 export default function Header() {
   const container = useRef<HTMLDivElement>(null);
   const textContainer = useRef<HTMLDivElement>(null);
+  const MarqueeRef = useRef<HTMLDivElement>(null);
+  const TextRef = useRef<HTMLParagraphElement>(null);
 
   useGSAP(
     () => {
@@ -23,6 +25,27 @@ export default function Header() {
         scrollTrigger: {
           trigger: textContainer.current,
           start: "top-=200px top",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
+
+      const MARGIN_VALUE = 200;
+
+      gsap.to(MarqueeRef.current, {
+        marginRight: MARGIN_VALUE,
+        scrollTrigger: {
+          trigger: MarqueeRef.current,
+          start: "top-=300px top",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
+      gsap.to(TextRef.current, {
+        marginLeft: MARGIN_VALUE,
+        scrollTrigger: {
+          trigger: TextRef.current,
+          start: "top-=300px top",
           end: "bottom top",
           scrub: 1,
         },
@@ -51,23 +74,29 @@ export default function Header() {
     <>
       <MouseParallax className="w-full h-full" strength={10}>
         <div
-          className=" h-screen flex justify-center items-center relative"
+          className=" h-screen flex justify-center items-center relative overflow-x-hidden"
           ref={container}
         >
           <div
             className="flex flex-col text-xl sm:text-4xl md:text-7xl lg:text-8xl xl:text-9xl font-bold items-center gap-y-10"
             ref={textContainer}
           >
-            <div className="flex items-end gap-x-4 ">
-              <p data-parallax-item data-strength="0.8" className="anim-item">
+            <div className="flex items-end gap-x-4 whitespace-nowrap">
+              <p
+                data-parallax-item
+                data-strength="0.8"
+                className="anim-item"
+                ref={TextRef}
+              >
                 حل چالش ها،{" "}
               </p>{" "}
               <div
                 className="py-2 sm:py-4 md:py-6 lg:py-8 bg-content1/90 rounded-4xl md:rounded-[55px] w-40 sm:w-56 md:w-100 lg:w-140 overflow-hidden anim-item"
                 data-parallax-item
                 data-strength="1.5"
+                ref={MarqueeRef}
               >
-                <Marquee dir="ltr" gap={24}>
+                <Marquee dir="rtl" gap={24}>
                   <div className="flex items-center gap-x-8 font-regular">
                     {[
                       "HTML",
@@ -92,10 +121,10 @@ export default function Header() {
             </div>
           </div>
 
-          <ImageBlur
+          {/* <ImageBlur
             src="/Header.jpg"
             classname="absolute bottom-15 left-10 anim-item"
-          />
+          /> */}
           <a
             onClick={(e) => {
               e.preventDefault();
