@@ -141,7 +141,7 @@ function AboutMeImage({ id, className }: { id?: string; className?: string }) {
           ما آن را با path-data شکل اول مقداردهی می‌کنیم.
         */}
         <image
-          href="/header.jpg" // <-- 🖼️ آدرس عکس خود را اینجا بگذارید
+          href="/Header.jpg" // <-- 🖼️ آدرس عکس خود را اینجا بگذارید
           width="100"
           height="100"
           clipPath="url(#myClipMask)" // <-- به ID کلیپ‌پث اشاره می‌کند
